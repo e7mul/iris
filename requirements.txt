@@ -8,3 +8,18 @@ psutil==5.8.0
 pygame==2.1.2
 tqdm==4.62.3
 wandb==0.12.7
+torch
+--extra-index-url https://download.pytorch.org/whl/cu116
+torchvision
+einops
+pytorch-lightning
+torchmetrics
+lightning-bolts
+matplotlib
+tqdm
+wandb
+scipy
+timm
+sklearn
+gin-config
+pre-commit

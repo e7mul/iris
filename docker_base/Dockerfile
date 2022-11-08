@@ -1,4 +1,4 @@
-FROM nvidia/cuda:11.4.2-cudnn8-devel-ubuntu18.04
+FROM nvidia/cuda:11.4.2-cudnn8-devel-ubuntu20.04
 
 ARG USER_NAME
 ARG PASSWD
@@ -11,9 +11,15 @@ RUN useradd -rm -d /home/$USER_NAME -s /bin/bash -g $UID -G sudo -u $UID $USER_N
 # This prevents installers from opening dialog boxes, be careful this setting is inherited!
 ENV DEBIAN_FRONTEND noninteractive
 
-RUN apt-key adv --fetch-keys https://repo.download.nvidia.com/baseos/GPG-KEY-dgx-debian-prod
+#RUN apt-get update && apt-get -y install sudo wget
 
-RUN apt-get update
+
+RUN  apt-key del 7fa2af80
+#RUN apt-get install -y wget
+#RUN wget https://developer.download.nvidia.com/compute/cuda/repos/$distro/$arch/cuda-keyring_1.0-1_all.deb
+#RUN  dpkg -i cuda-keyring_1.0-1_all.deb
+
+RUN apt-key adv --fetch-keys https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/x86_64/3bf863cc.pub
 
 RUN apt-get update && apt-get -y install \
     sudo \
@@ -34,7 +40,7 @@ RUN apt-get update && apt-get -y install \
     net-tools \
     pkg-config \
     protobuf-compiler \
-    python3 \
+    python3.8 \
     python3-pip \
     tmux \
     wget \

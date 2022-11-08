@@ -1,5 +1,0 @@
-https://ljvmiranda921.github.io/notebook/2018/06/21/precommits-using-black-and-flake8/
-
-Copy config files (for .flake8 and pre-commit; we use default black settings)
-
-run command: pre-commit install
