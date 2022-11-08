@@ -12,7 +12,7 @@ from agent import Agent
 from dataset import EpisodesDataset
 from envs import SingleProcessEnv, MultiProcessEnv
 from episode import Episode
-from utils import EpisodeDirManager, RandomHeuristic
+from utils import EpisodeDirManager, RandomHeuristic, RandomContinousHeuristic
 
 
 class Collector:
@@ -27,7 +27,7 @@ class Collector:
         self.episode_dir_manager = episode_dir_manager
         self.obs = self.env.reset()
         self.episode_ids = [None] * self.env.num_envs
-        self.heuristic = RandomHeuristic(self.env.num_actions)
+        self.heuristic = RandomContinousHeuristic(env.dim_actions)
 
     @torch.no_grad()
     def collect(

@@ -183,3 +183,13 @@ def make_video(fname, fps, frames):
     for frame in frames:
         video.write(frame[:, :, ::-1])
     video.release()
+
+
+class RandomContinousHeuristic:
+    def __init__(self, dim_actions):
+        self.dim_actions = dim_actions
+
+    def act(self, obs):
+        assert obs.ndim == 4  # (N, H, W, C)
+        n = obs.size(0)
+        return torch.randn((n, self.dim_actions))
