@@ -62,10 +62,13 @@ class Agent(nn.Module):
                 1,
             )
         )
-        logits_actions = self.actor_critic(input_ac).logits_actions[:, -1] / temperature
-        act_token = (
-            Categorical(logits=logits_actions).sample()
-            if should_sample
-            else logits_actions.argmax(dim=-1)
-        )
-        return act_token
+        logits_actions = self.actor_critic(input_ac).logits_actions[
+            :, -1
+        ]  # / temperature
+        return logits_actions
+        # act_token = (
+        #     Categorical(logits=logits_actions).sample()
+        #     if should_sample
+        #     else logits_actions.argmax(dim=-1)
+        # )
+        # return act_token

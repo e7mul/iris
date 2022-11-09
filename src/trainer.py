@@ -103,10 +103,10 @@ class Trainer:
         tokenizer = instantiate(cfg.tokenizer)
         world_model = WorldModel(
             obs_vocab_size=tokenizer.vocab_size,
-            act_vocab_size=env.num_actions,
+            act_vocab_size=env.dim_actions,
             config=instantiate(cfg.world_model),
         )
-        actor_critic = ActorCritic(**cfg.actor_critic, act_vocab_size=env.num_actions)
+        actor_critic = ActorCritic(**cfg.actor_critic, act_vocab_size=env.dim_actions)
         self.agent = Agent(tokenizer, world_model, actor_critic).to(self.device)
         print(
             f"{sum(p.numel() for p in self.agent.tokenizer.parameters())} parameters in agent.tokenizer"
